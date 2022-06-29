@@ -6,7 +6,7 @@ export default function BoxHome(props){
             <h2>{props.title}</h2>
             <img src="/LogoBsp.png" className={styles.image}></img>
             <p><strong>Preis:</strong> CHF {props.price}</p>
-            <button href="/" className={styles.btnDetail}>Details</button>
+            <button className={styles.btnDetail}><a href={`/items/${props.id}`}>Details</a></button>
         </div>
     )
 }
