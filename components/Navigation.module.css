@@ -1,0 +1,22 @@
+.navigation {
+    float: right;
+    display: flex;
+
+    height: 4em;
+    align-items: center;
+    margin-right: 2em;
+    
+}
+
+.navigation a {
+        padding: 0 1em;
+        margin: 0 1em;
+        text-decoration: none;
+        color: black;
+    
+}
+
+.navigation a:hover {
+    border-bottom: 0.2em solid darkred;
+    font-weight: bold;
+}
