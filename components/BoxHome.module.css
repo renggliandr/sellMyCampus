@@ -1,0 +1,20 @@
+.box{
+    background-color: lightblue;
+    padding: 1.5em;
+    margin: 1em;
+    width: 10em;
+    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,0.5);
+}
+
+.image{
+    width: 100%;
+}
+
+.btnDetail{
+    background-color: darkred;
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 10%;
+    float: right;
+}
