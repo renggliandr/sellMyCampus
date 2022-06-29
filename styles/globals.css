@@ -7,7 +7,7 @@ html, body{
 }
 
 main{
-    margin: 1em;
+    margin: 2em;
     background-color: white;
 }
 
@@ -29,4 +29,10 @@ h3{
 
 p{
     font-size: 1em;
+}
+
+a {
+    color: darkred;
+    text-decoration: none;
+    cursor: pointer;
 }

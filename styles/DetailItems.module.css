@@ -1,0 +1,26 @@
+.image{
+    width: 10em;
+    margin: 2em 0 2em 0;
+}
+
+.btnBuy{
+    background-color: darkgreen;
+    padding: 0.5em;
+    border: none;
+    margin-top: 2em;
+    border-radius: 10%;
+}
+
+.btnBack{
+    background-color: rgb(80, 80, 80);
+    padding: 0.5em;
+    border: none;
+    margin-top: 2em;
+    border-radius: 10%;
+    margin-right: 5em;
+}
+
+.btnBuy a, .btnBack a{
+    color: white;
+    text-decoration: none;
+}
