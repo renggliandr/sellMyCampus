@@ -1,0 +1,31 @@
+.footer {
+    position: fixed;
+    bottom: 0px;
+    height: 3em;
+    width: 100%;
+
+
+    background-color: #FFCC00;
+}
+
+
+.content {
+    text-align: center;
+}
+
+.text {
+    
+    display: inline;
+}
+
+.image {
+    height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.impressum{
+    text-decoration: none;
+    font-size: 0.8em;
+    color: darkred;
+}

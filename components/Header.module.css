@@ -1,0 +1,33 @@
+.whole_header {
+    height: 4em;
+    width: 100vw;
+    background-color: #FFCC00;
+    margin-bottom: 1.5em;
+}
+
+.header {
+    float:left;
+    display: flex;
+    align-items: center;
+
+}
+
+.image {
+    height: 2.5em;
+    padding: 0.5em 1em 1em 0.5em;
+    display: inline;
+}
+
+
+.h1 {
+
+    font-size: 1.5em;
+    display: inline;
+    color: black;
+    
+}
+
+.header a {
+    text-decoration: none;
+}
+

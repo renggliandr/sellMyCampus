@@ -1,0 +1,28 @@
+html, body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    margin: 1em;
+    background-color: white;
+}
+
+h1{
+    color: darkred;
+    font-size: 1.6em;
+}
+
+h2{
+    font-size: 1.4em;
+}
+
+h3{
+    font-size: 1.2em;
+}
+
+p{
+    font-size: 1em;
+}
