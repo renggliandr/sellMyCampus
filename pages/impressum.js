@@ -4,11 +4,11 @@ export default function Impressum(){
          <h1>Impressum</h1>
             <h2>Eigentum, Immaterialgüterrechte</h2>
             <h3>Bilder</h3>
-            <p>Fast sämtliche auf dieser Webseite verwendeten Bilder (inklusive Bilder in den Headern) sind von den Autoren gemacht worden. Dementsprechend liegen fast alle Urheber- und Nutzungsrechte bei ihnen. Die nicht eigenen Bilder würden bei einer allfälligen Online-Stellung noch ersetzt werden.</p>
+            <p>Sämtliche auf dieser Webseite verwendeten Bilder (inklusive Bilder in den Headern) sind von den Autoren gemacht worden. Dementsprechend liegen alle Urheber- und Nutzungsrechte bei ihnen.</p>
             <h3>Texte</h3>
             <p>Sämtliche Texte wurden von den Autoren geschrieben. Dementsprechend liegen sämtliche Urheber- und Nutzungsrechte bei den Autoren. </p>
             <h3>Datenbank</h3>
-            <p>Die Datenbank und das Backend wurden von den Autoren erstellt. Dementsprechend liegen sämtliche Urheber- und Nutzungsrechte bei den ihnen.</p>
+            <p>Die Datenbank und das Backend wurden von den Autoren erstellt. Dementsprechend liegen sämtliche Urheber- und Nutzungsrechte bei ihnen.</p>
             <h2>Haftungsausschluss</h2>
             <p>Alle Personen, die auf der vorliegenden Webseite Sell my Campus im World Wide Web veröffentlichte Informationen abrufen, erklären sich als mit den nachstehenden Bedingungen einverstanden:</p>
             <p></p>
@@ -22,8 +22,8 @@ export default function Impressum(){
                 gleiches gilt uneingeschränkt für direkte, spezielle indirekte oder Folgeschäden, die aus oder im Zusammenhang mit Zugriff auf, Benutzung, Leistung oder Abfragen der Webseite Sell my Campus entstehen könnten.
                 </p>
             <h3>Privacy Statement</h3>
-            <p>Die Betreiber der Webseite React Ross Register verwendet zur Erfüllung seines Geschäftszwecks nur persönliche Daten, die uns unsere Users explizit mitteilen. Die Betreiber der Webseite 
-                React Ross Register speichert keine Daten wie individuelle Usermuster,Cookie-Einträge oder Klicks auf bestimmte Banner. </p>
+            <p>Die Betreiber der Webseite Sell my Campus verwendet zur Erfüllung seines Geschäftszwecks nur persönliche Daten, die uns unsere Users explizit mitteilen. Die Betreiber der Webseite 
+                Sell my Campus speichert keine Daten wie individuelle Usermuster,Cookie-Einträge oder Klicks auf bestimmte Banner. </p>
             <p>Die vorliegende Webseite wurde im Rahmen des Projektmoduls im ICT-Campus der Post AG, Engelhaldenstrasse 26 in 3030 Bern entwickelt.
                 Zuständig für die Webseite sind vorliegende Personen:</p>
                 <ul>
