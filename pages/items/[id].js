@@ -4,16 +4,22 @@ import styles from "../../styles/DetailItems.module.css"
 
 export default function detailItemPage(item){
 
-    return item &&(
+    const handleDelete = async () => {
+        await ItemAPI.delete(item.item)
+    }
+
+    return item.item &&(
         <>
             <h1>{item.item.title}</h1>
             <img src="../../../LogoBsp.png" className={styles.image}></img>
             <h3>{item.item.subtitle}</h3>
             <p>{item.item.description}</p>
             <p><strong>Preis:</strong> CHF {item.item.price}</p>
-            <p><strong>Anbieter:</strong> </p>
+            {item.item.user != 1 ? <p><strong>Anbieter:</strong> {item.item.user}</p> : <p><strong>Anbieter:</strong> you</p>}
             <button className={styles.btnBack}><a href={`/`}>Zurück</a></button>
-            <button className={styles.btnBuy}><a href={`/`}>Kaufen</a></button>
+            {item.item.user == 1 && item.item.status != "sold" && <button className={styles.btnDelete} onClick={handleDelete}><a href={`/`}>Löschen</a></button>}
+            {item.item.user != 1 && item.item.status != "sold" && <button className={styles.btnBuy}><a href={`/`}>Kaufen</a></button>}
+
         </>
     )
 
@@ -23,7 +29,12 @@ export default function detailItemPage(item){
 
 export async function getStaticProps(context){
     const id = context.params.id
-    const item = await ItemAPI.readId(id);
+    let item;
+    try{
+        item = await ItemAPI.readId(id);
+    } catch (e){
+        item = null;
+    }
     return{
         props: { item }, revalidate: 30
     }
