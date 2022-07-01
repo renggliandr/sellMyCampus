@@ -10,9 +10,7 @@ import ItemAPI from "../lib/api/Items";
 export default function ItemForm({url, sasKey, highestId }) {
 
     let idNew = parseInt(highestId[0].id)
-    console.log(idNew)
     idNew = idNew += 1
-    console.log(idNew)
     idNew = idNew.toString()
     
 
@@ -89,23 +87,18 @@ export default function ItemForm({url, sasKey, highestId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        /*
+        
         if (!titleError && !imgError) {
             const resp = updateFileNames()
             blopUpload(resp[0])
-            setSuccess(true)
-        } else {
-            setImgError("Es muss mindestens 1 Bild hinterlegt werden!")
-        }
-        */
-        if (!titleError) {
-            setSuccess(true)
             try{
                 await ItemAPI.create(item)
             }catch (e){
 
             }
+            setSuccess(true)
         } else {
+            setImgError("Es muss mindestens 1 Bild hinterlegt werden!")
         }
 
     }
@@ -141,7 +134,7 @@ export default function ItemForm({url, sasKey, highestId }) {
 
         if (files.length !== 0) {
             for (let i = 0; i < files.length; i++) {
-                const name = `${item.title}_${item.price}_${i}`
+                const name = `${item.title}_${item.price}_${i}.${files[i].name.split(".")[files[i].name.split(".").length-1]}`
                 jsonArr.push({
                     path: name
                 })
@@ -170,8 +163,8 @@ export default function ItemForm({url, sasKey, highestId }) {
             const image = images[i]
             const login = `${url}/${container}/${image.name}?${sasKey}`;
             console.log(login)
-            //let blockBlobClient = new BlockBlobClient(login, new AnonymousCredential());
-            //blockBlobClient.uploadBrowserData(file);
+            let blockBlobClient = new BlockBlobClient(login, new AnonymousCredential());
+            blockBlobClient.uploadBrowserData(image);
         }
     }
 

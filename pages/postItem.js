@@ -15,11 +15,9 @@ export default function postItemPage({url, sasKey, highestId}){
 }
 
 export async function getStaticProps() {
-    //const body = await CredentialsAPI.get();
-    //const url = body.url
-    //const sasKey = body.sasKey
-    const url = null
-    const sasKey = null
+    const body = await CredentialsAPI.get();
+    const url = body.url
+    const sasKey = body.sasKey
     const highestId = await ItemAPI.getHighestId();
     return {
         props: { url, sasKey, highestId }, revalidate: 30
