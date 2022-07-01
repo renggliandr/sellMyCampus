@@ -3,17 +3,31 @@ import Button from "./Button";
 import { router } from "next/router";
 import styles from "./ItemForm.module.css"
 import CredentialsAPI from "../lib/api/Credentials";
+import ItemAPI from "../lib/api/Items";
 
-const defaultItem = {
-    title: "",
-    price: 0,
-    images: [{
-        path: ""
-    }]
-}
 
-export default function ItemForm({url, sasKey }) {
 
+export default function ItemForm({url, sasKey, highestId }) {
+
+    let idNew = parseInt(highestId[0].id)
+    console.log(idNew)
+    idNew = idNew += 1
+    console.log(idNew)
+    idNew = idNew.toString()
+    
+
+    const defaultItem = {
+        id: idNew,
+        title: "",
+        price: 0,
+        user: 1,
+        subtitle: "",
+        description: "",
+        images: [{
+            path: ""
+        }]
+    }
+    
     const [titleError, setTitleError] = useState(true);
     const [imgError, setImgError] = useState(true)
     const [item, setItem] = useState(defaultItem)
@@ -22,12 +36,15 @@ export default function ItemForm({url, sasKey }) {
     const [success, setSuccess] = useState(false)
     const { BlockBlobClient, AnonymousCredential } = require("@azure/storage-blob");
 
+   
+
     useEffect(() => {
         setItem({
             ...item,
             ...{ price: price }
         })
     }, [price])
+
 
     const handleChange = (e) => {
         setItem(
@@ -43,6 +60,24 @@ export default function ItemForm({url, sasKey }) {
         setPrice(e.target.value)
     }
 
+    const changeSubtitle = (e) => {
+        setItem(
+            {
+                ...item,
+                ...{ subtitle: e.target.value }
+            }
+        )
+    }
+
+    const changeDescription = (e) => {
+        setItem(
+            {
+                ...item,
+                ...{ description: e.target.value }
+            }
+        )
+    }
+
     const validateTitle = (value) => {
         if (value === "") {
             setTitleError("Titel darf nicht leer sein!")
@@ -53,7 +88,8 @@ export default function ItemForm({url, sasKey }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
+        /*
         if (!titleError && !imgError) {
             const resp = updateFileNames()
             blopUpload(resp[0])
@@ -61,6 +97,17 @@ export default function ItemForm({url, sasKey }) {
         } else {
             setImgError("Es muss mindestens 1 Bild hinterlegt werden!")
         }
+        */
+        if (!titleError) {
+            setSuccess(true)
+            try{
+                await ItemAPI.create(item)
+            }catch (e){
+
+            }
+        } else {
+        }
+
     }
 
     const handleCancel = () => {
@@ -132,32 +179,47 @@ export default function ItemForm({url, sasKey }) {
         <div>
             {!success ?
                 <div>
+                    <h1>Neues Item erstellen</h1>
                     <form className={styles.form} onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="title">Titel</label>
-                            <div>
+                        <div className={styles.input}>
+                            <label htmlFor="title" className={styles.label}>Titel <strong className={styles.red}>*</strong></label>
+                            <div className={styles.inputField}>
                                 <input onChange={handleChange} defaultValue={item.title}
                                     type="text" name="title" id="title" placeholder="Titel" />
                             </div>
                             {titleError && <div className={styles.error}>{titleError}</div>}
                         </div>
-                        <div>
-                            <label>Preis</label>
-                            <div>
+                        <div className={styles.input}>
+                            <label className={styles.label}>Preis</label>
+                            <div className={styles.inputField}>
                                 <input onChange={changePrice} defaultValue={0}
-                                    type="number" step="0.01" name="preis" id="preis" placeholder="Preis" />
+                                    type="number" step="0.05" name="preis" id="preis" placeholder="Preis" />
                             </div>
                         </div>
-                        <div>
+                        <div className={styles.input}>
+                            <label className={styles.label}>Untertitel</label>
+                            <div className={styles.inputField}>
+                                <input onChange={changeSubtitle}
+                                    type="text" name="subtitle" id="subtitle" placeholder="Untertitel" />
+                            </div>
+                        </div>
+                        <div className={styles.input}>
+                            <label className={styles.label}>Beschreibung</label>
+                            <div className={styles.inputField}>
+                                <input onChange={changeDescription} 
+                                    type="text" name="description" id="description" placeholder="Beschreibung" />
+                            </div>
+                        </div>
+                        <div className={styles.input}>
+                            <label className={styles.label}>Bilder Hochladen</label>
                             <div className={styles.files}>
-                                <label>Bilder Hochladen</label>
-                                <input onChange={onImageChange} onInput={onImageChange} type="file" multiple />
+                                <input className={styles.inputField} onChange={onImageChange} onInput={onImageChange} type="file" multiple />
                             </div>
                             {imgError && <p className={styles.error}>{imgError}</p>}
                         </div>
-                        <Button type={"submit"} disabled={titleError || imgError}
-                            text={"Erstellen"} />
-                        <Button onClick={handleCancel} text={"Abbrechen"} />
+                        <button disabled={titleError} type="submit" className={styles.btnSubmit}
+                            >Erstellen</button>
+                        <button onClick={handleCancel} className={styles.btnCancel}>Abbrechen</button>
                     </form>
                 </div> :
                 <div>
@@ -168,11 +230,3 @@ export default function ItemForm({url, sasKey }) {
     )
 }
 
-export async function getStaticProps() {
-    const body = await CredentialsAPI.get();
-    const url = body.url
-    const sasKey = body.sasKey
-    return {
-        props: { url, sasKey }, revalidate: 30
-    }
-}
