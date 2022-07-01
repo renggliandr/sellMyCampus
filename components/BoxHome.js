@@ -1,4 +1,3 @@
-import ItemAPI from "../lib/api/Items"
 import styles from "./BoxHome.module.css"
 
 export default function BoxHome(props){
