@@ -3,15 +3,21 @@ import styles from "../styles/Home.module.css"
 
 import ItemAPI from "/lib/api/Items"
 
-export default function myItemsPage({items}){
+import { useGlobalContext } from "../store"
 
-    return (
-        <div>
+
+export default function myItemsPage({items}){
+    const { session } = useGlobalContext()
+
+
+    return(
+        <>
+        {session ? <div>
             <h1>Meine Artikel</h1>
              <div className={styles.boxen}>
                 {
                     items && items.map(item => {
-                        if(item.user == "1"){
+                        if(item.user == session.id){
                             return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
                         }
                     })
@@ -19,7 +25,9 @@ export default function myItemsPage({items}){
             
 
             </div>
-        </div>
+        </div> : <p>Für diesen Bereich müssen Sie eingeloggt sein. <a href="/login">Hier</a> geht es zum Login.</p>}
+        </>
+        
     )
 }
 

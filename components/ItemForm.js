@@ -4,20 +4,30 @@ import { router } from "next/router";
 import styles from "./ItemForm.module.css"
 import ItemAPI from "../lib/api/Items";
 
+import {useGlobalContext} from "../store";
 
 
 export default function ItemForm({url, sasKey, highestId }) {
+
+    const { session } = useGlobalContext()
 
     let idNew = parseInt(highestId[0].id)
     idNew = idNew += 1
     idNew = idNew.toString()
     
+    let id
+    if(session == null){
+        id = 0
+    } else{
+        id = session.id
+    }
+
 
     const defaultItem = {
         id: idNew,
         title: "",
         price: 0,
-        user: 1,
+        user: id,
         subtitle: "",
         description: "",
         images: [{
@@ -168,57 +178,59 @@ export default function ItemForm({url, sasKey, highestId }) {
     }
 
     return (
-        <div>
-            {!success ?
-                <div>
-                    <h1>Neues Item erstellen</h1>
-                    <form className={styles.form} onSubmit={handleSubmit}>
-                        <div className={styles.input}>
-                            <label htmlFor="title" className={styles.label}>Titel <strong className={styles.red}>*</strong></label>
-                            <div className={styles.inputField}>
-                                <input onChange={handleChange} defaultValue={item.title}
-                                    type="text" name="title" id="title" placeholder="Titel" />
-                            </div>
-                            {titleError && <div className={styles.error}>{titleError}</div>}
+        <> {session ? <div>
+        {!success ?
+            <div>
+                <h1>Neues Item erstellen</h1>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles.input}>
+                        <label htmlFor="title" className={styles.label}>Titel <strong className={styles.red}>*</strong></label>
+                        <div className={styles.inputField}>
+                            <input onChange={handleChange} defaultValue={item.title}
+                                type="text" name="title" id="title" placeholder="Titel" />
                         </div>
-                        <div className={styles.input}>
-                            <label className={styles.label}>Preis</label>
-                            <div className={styles.inputField}>
-                                <input onChange={changePrice} defaultValue={0}
-                                    type="number" step="0.05" name="preis" id="preis" placeholder="Preis" />
-                            </div>
+                        {titleError && <div className={styles.error}>{titleError}</div>}
+                    </div>
+                    <div className={styles.input}>
+                        <label className={styles.label}>Preis</label>
+                        <div className={styles.inputField}>
+                            <input onChange={changePrice} defaultValue={0}
+                                type="number" step="0.05" name="preis" id="preis" placeholder="Preis" />
                         </div>
-                        <div className={styles.input}>
-                            <label className={styles.label}>Untertitel</label>
-                            <div className={styles.inputField}>
-                                <input onChange={changeSubtitle}
-                                    type="text" name="subtitle" id="subtitle" placeholder="Untertitel" />
-                            </div>
+                    </div>
+                    <div className={styles.input}>
+                        <label className={styles.label}>Untertitel</label>
+                        <div className={styles.inputField}>
+                            <input onChange={changeSubtitle}
+                                type="text" name="subtitle" id="subtitle" placeholder="Untertitel" />
                         </div>
-                        <div className={styles.input}>
-                            <label className={styles.label}>Beschreibung</label>
-                            <div className={styles.inputField}>
-                                <input onChange={changeDescription} 
-                                    type="text" name="description" id="description" placeholder="Beschreibung" />
-                            </div>
+                    </div>
+                    <div className={styles.input}>
+                        <label className={styles.label}>Beschreibung</label>
+                        <div className={styles.inputField}>
+                            <input onChange={changeDescription} 
+                                type="text" name="description" id="description" placeholder="Beschreibung" />
                         </div>
-                        <div className={styles.input}>
-                            <label className={styles.label}>Bilder Hochladen</label>
-                            <div className={styles.files}>
-                                <input className={styles.inputField} onChange={onImageChange} onInput={onImageChange} type="file" multiple />
-                            </div>
-                            {imgError && <p className={styles.error}>{imgError}</p>}
+                    </div>
+                    <div className={styles.input}>
+                        <label className={styles.label}>Bilder Hochladen</label>
+                        <div className={styles.files}>
+                            <input className={styles.inputField} onChange={onImageChange} onInput={onImageChange} type="file" multiple />
                         </div>
-                        <button disabled={titleError} type="submit" className={styles.btnSubmit}
-                            >Erstellen</button>
-                        <button onClick={handleCancel} className={styles.btnCancel}>Abbrechen</button>
-                    </form>
-                </div> :
-                <div>
-                    <h2>Event wurde erfolgreich erstellt</h2>
-                </div>
-            }
-        </div>
+                        {imgError && <p className={styles.error}>{imgError}</p>}
+                    </div>
+                    <button disabled={titleError} type="submit" className={styles.btnSubmit}
+                        >Erstellen</button>
+                    <button onClick={handleCancel} className={styles.btnCancel}>Abbrechen</button>
+                </form>
+            </div> :
+            <div>
+                <h2>Event wurde erfolgreich erstellt</h2>
+            </div>
+        }
+    </div> : <p>Für diesen Bereich müssen Sie eingeloggt sein. <a href="/login">Hier</a> geht es zum Login.</p>}
+        </>
+        
     )
 }
 

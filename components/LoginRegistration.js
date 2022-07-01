@@ -10,7 +10,7 @@ const regexOnlyWhiteSpace = /(?!^\s+$)^.*$/m;
 
 
 
-export default function LoginRegistration({ type, users }) {
+export default function LoginRegistration({ type, users, highestId }) {
     const { session, login, logout } = useGlobalContext()
 
     const [username, setUsername] = useState("")
@@ -71,12 +71,27 @@ export default function LoginRegistration({ type, users }) {
     }
 
     const registerUser = async () => {
+        console.log(highestId)
+        let idNew = parseInt(highestId[0].id)
+        idNew = idNew += 1
+        idNew = idNew.toString()
+
+        const user = {
+            "username": username,
+            "password": password,
+            "id": idNew
+        }
+        
+        let newUser = null
         try {
-            const newUser = await UsersAPI.signUp(user)
-            if (newUser) {
-                setRegistered(true)
-            }
+            newUser = await UsersAPI.signUp(user)
+           
         } catch (a) {
+        }
+
+        if (newUser) {
+            setRegistered(true)
+        } else{
             setError("Benutzer konnte nicht erstellt werden!")
         }
     }
