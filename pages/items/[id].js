@@ -2,10 +2,18 @@ import ItemAPI from "../../lib/api/Items"
 
 import styles from "../../styles/DetailItems.module.css"
 
+import {router} from "next/router"
+
 export default function detailItemPage(item){
 
     const handleDelete = async () => {
-        await ItemAPI.delete(item.item)
+        console.log(item.item)
+        try{
+            await ItemAPI.delete(item.item)
+        } catch (e){
+            
+        }
+        router.push("/")
     }
 
     return item.item &&(
@@ -17,7 +25,7 @@ export default function detailItemPage(item){
             <p><strong>Preis:</strong> CHF {item.item.price}</p>
             {item.item.user != 1 ? <p><strong>Anbieter:</strong> {item.item.user}</p> : <p><strong>Anbieter:</strong> you</p>}
             <button className={styles.btnBack}><a href={`/`}>Zurück</a></button>
-            {item.item.user == 1 && item.item.status != "sold" && <button className={styles.btnDelete} onClick={handleDelete}><a href={`/`}>Löschen</a></button>}
+            {item.item.user == 1 && item.item.status != "sold" && <button className={styles.btnDelete} onClick={handleDelete}><a>Löschen</a></button>}
             {item.item.user != 1 && item.item.status != "sold" && <button className={styles.btnBuy}><a href={`/`}>Kaufen</a></button>}
 
         </>
@@ -41,13 +49,20 @@ export async function getStaticProps(context){
 }
 
 export async function getStaticPaths() {
+    let items;
+    let paths;
+    try{
+        items = await ItemAPI.readAll()
+        paths = items.map(item => (
+            { 
+                params: { id: item.id.toString() } 
+            })
+        )
+    } catch (e){
+        paths = []
+    }
+   
     
-    const items = await ItemAPI.readAll()
-    const paths = items.map(item => (
-        { 
-            params: { id: item.id.toString() } 
-        })
-    )
     return { paths, fallback: true }
 }
 
