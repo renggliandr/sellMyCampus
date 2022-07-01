@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CI: false
 
     steps:
       - uses: actions/checkout@main
@@ -39,6 +41,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      CI: false
 
     steps:
       - name: Download artifact from build job
