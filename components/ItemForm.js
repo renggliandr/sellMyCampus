@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import { router } from "next/router";
 import styles from "./ItemForm.module.css"
-import CredentialsAPI from "../lib/api/Credentials";
 import ItemAPI from "../lib/api/Items";
 
 
