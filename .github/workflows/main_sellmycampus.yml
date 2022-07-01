@@ -3,11 +3,7 @@
 
 name: Build and deploy Node.js app to Azure Web App - sellmycampus
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push]
 
 jobs:
   build:
@@ -28,7 +24,7 @@ jobs:
           npm run test --if-present
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@main
         with:
           name: node-app
           path: .
@@ -42,7 +38,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@main
         with:
           name: node-app
 
