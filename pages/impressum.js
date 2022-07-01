@@ -1,4 +1,4 @@
-export default function Impressum(){
+export default function impressumPage(){
     return(
         <>
          <h1>Impressum</h1>

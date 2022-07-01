@@ -19,15 +19,13 @@ export default function Navigation () {
 
 
     return (
-
         <div className={styles.navigation}>
         <Link href="/">Home</Link>
+        <Link href="/postItem">Post Item</Link>
         {session && <Link href="/">Meine Artikel</Link>}
         {!session && <Link href="/login">Login</Link>}
         {session && <Link href="/"><a onClick={logout_clicked}>Logout</a></Link> }
         </div>
     )
 
-
-    
 }
