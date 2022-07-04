@@ -1,5 +1,5 @@
 .whole_header {
-    height: 4em;
+    min-height: 4em;
     width: 100%;
     background-color: #FFCC00;
     margin-bottom: 1.5em;

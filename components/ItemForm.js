@@ -37,6 +37,7 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         user: id,
         published: date,
         status: "",
+        boughtBy: "",
         subtitle: "",
         description: "",
         images: [{
@@ -185,6 +186,7 @@ export default function ItemForm({url, sasKey, highestId, items }) {
             blockBlobClient.uploadBrowserData(image);
         }
     }
+
 
     return (
         <> {session ? <div>

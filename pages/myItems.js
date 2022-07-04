@@ -14,16 +14,37 @@ export default function myItemsPage({items}){
         <>
         {session ? <div>
             <h1>Meine Artikel</h1>
+            <h2>Offene Angebote</h2>
              <div className={styles.boxen}>
                 {
                     items && items.map(item => {
-                        if(item.user == session.id){
+                        if(item.user == session.id && item.status != "sold"){
                             return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
                         }
                     })
                 }
-            
-
+            </div>
+            <br />
+            <h2>Bereits verkaufte Angebote</h2>
+            <div className={styles.boxen}>
+                {
+                    items && items.map(item => {
+                        if(item.user == session.id && item.status == "sold"){
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
+                        }
+                    })
+                }
+            </div>
+            <br />
+            <h2>Gekaufte Angebote</h2>
+            <div className={styles.boxen}>
+                {
+                    items && items.map(item => {
+                        if(item.boughtBy == session.id && item.status == "sold"){
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
+                        }
+                    })
+                }
             </div>
         </div> : <p>Für diesen Bereich müssen Sie eingeloggt sein. <a href="/login">Hier</a> geht es zum Login.</p>}
         </>

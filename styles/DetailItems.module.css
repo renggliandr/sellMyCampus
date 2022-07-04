@@ -33,3 +33,9 @@
     color: white;
     text-decoration: none;
 }
+
+.sold{
+    color: darkgreen;
+    font-size: 1.5em;
+    font-weight: bold;
+}
