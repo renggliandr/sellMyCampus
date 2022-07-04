@@ -31,6 +31,9 @@ export async function getStaticProps(){
     } catch (e){
         items = null;
     }
+
+    
+
     return{
         props: { items }, revalidate: 30
     }
