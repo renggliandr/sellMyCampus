@@ -4,7 +4,11 @@ import styles from "../../styles/DetailItems.module.css"
 
 import {router} from "next/router"
 
+import { useGlobalContext } from "../../store"
+
+
 export default function detailItemPage(item){
+    const { session } = useGlobalContext()
 
     const handleDelete = async () => {
         console.log(item.item)
@@ -16,6 +20,11 @@ export default function detailItemPage(item){
         router.push("/")
     }
 
+    const handleBuy = async () => {
+        item.item.status = "sold"
+        await ItemAPI.create(item.item)
+    }
+
     return item.item &&(
         <>
             <h1>{item.item.title}</h1>
@@ -23,15 +32,14 @@ export default function detailItemPage(item){
             <h3>{item.item.subtitle}</h3>
             <p>{item.item.description}</p>
             <p><strong>Preis:</strong> CHF {item.item.price}</p>
-            {item.item.user != 1 ? <p><strong>Anbieter:</strong> {item.item.user}</p> : <p><strong>Anbieter:</strong> you</p>}
+            {session && item.item.user == session.id ? <p><strong>Anbieter:</strong> you</p> : <p><strong>Anbieter:</strong> {item.item.user}</p>}
+            <p><strong>Veröffentlicht:</strong> {item.item.published}</p>
             <button className={styles.btnBack}><a href={`/`}>Zurück</a></button>
-            {item.item.user == 1 && item.item.status != "sold" && <button className={styles.btnDelete} onClick={handleDelete}><a>Löschen</a></button>}
-            {item.item.user != 1 && item.item.status != "sold" && <button className={styles.btnBuy}><a href={`/`}>Kaufen</a></button>}
+            {session && (item.item.user == session.id) && (item.item.status != "sold") && <button className={styles.btnDelete} onClick={handleDelete}><a>Löschen</a></button>}
+            {session && (item.item.user != session.id) && (item.item.status != "sold") && <button className={styles.btnBuy} onClick = {handleBuy}><a href={`/`}>Kaufen</a></button>}
 
         </>
-    )
-
-    
+    )  
 }
 
 

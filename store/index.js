@@ -23,8 +23,9 @@ const useSession = () => {
         const session = JSON.parse(localStorage.getItem(STORAGE_KEY))
   
 
+
         if (session !== null) {
-        
+        /*
             const { exp } = jwtDecode(session.accessToken)
             const d = new Date(0)
             d.setUTCSeconds(exp)
@@ -35,8 +36,10 @@ const useSession = () => {
                 logout()
                 return
             }
+        */
             login(session)
         }
+
         setLoading(false)
     }, [])
 

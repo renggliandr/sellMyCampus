@@ -3,12 +3,12 @@ import ItemForm from "../components/ItemForm"
 import CredentialsAPI from "../lib/api/Credentials"
 import ItemAPI from "../lib/api/Items"
 
-export default function postItemPage({url, sasKey, highestId}){
+export default function postItemPage({url, sasKey, highestId, items}){
     console.log(highestId)
 
     return(
         <div>
-            <ItemForm url={url} sasKey = {sasKey} highestId={highestId}/>
+            <ItemForm url={url} sasKey = {sasKey} highestId={highestId} items={items}/>
         </div>
     )
 
@@ -19,7 +19,8 @@ export async function getStaticProps() {
     const url = body.url
     const sasKey = body.sasKey
     const highestId = await ItemAPI.getHighestId();
+    const items = await ItemAPI.readAll();
     return {
-        props: { url, sasKey, highestId }, revalidate: 30
+        props: { url, sasKey, highestId, items }, revalidate: 30
     }
 }

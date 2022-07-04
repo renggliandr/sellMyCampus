@@ -11,7 +11,9 @@ export default function indexPage({items}){
              <div className={styles.boxen}>
                 {
                     items && items.map(item => {
-                        return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id}/>
+                        if(item.status != "sold"){
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id}/>
+                        }
                     })
                 }
             

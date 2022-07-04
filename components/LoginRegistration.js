@@ -71,15 +71,22 @@ export default function LoginRegistration({ type, users, highestId }) {
     }
 
     const registerUser = async () => {
-        console.log(highestId)
-        let idNew = parseInt(highestId[0].id)
-        idNew = idNew += 1
-        idNew = idNew.toString()
+        let idNew
+        for(let i = 0; i<users.length; i++)
+        {
+            if(users[i].published == highestId[0]){
+                idNew = (parseInt(users[i].id) + 1).toString()
+            }
+        }
+
+        let today = new Date(), 
+        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
 
         const user = {
             "username": username,
             "password": password,
-            "id": idNew
+            "id": idNew,
+            "published": date
         }
         
         let newUser = null
@@ -92,7 +99,7 @@ export default function LoginRegistration({ type, users, highestId }) {
         if (newUser) {
             setRegistered(true)
         } else{
-            setError("Benutzer konnte nicht erstellt werden!")
+            //setError("Benutzer konnte nicht erstellt werden!")
         }
     }
 
