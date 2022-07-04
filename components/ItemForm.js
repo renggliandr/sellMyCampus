@@ -11,19 +11,25 @@ export default function ItemForm({url, sasKey, highestId, items }) {
 
     const { session } = useGlobalContext()
 
-    let idNew
+    let idNew = null
     for(let i = 0; i<items.length; i++)
     {
         if(items[i].published == highestId[0]){
             idNew = (parseInt(items[i].id) + 1).toString()
         }
     }
+    if(idNew == null){
+        idNew = "1"
+    }
     
     let id
+    let username
     if(session == null){
         id = 0
+        username = ""
     } else{
         id = session.id
+        username = session.username
     }
 
     let today = new Date(), 
@@ -34,10 +40,16 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         id: idNew,
         title: "",
         price: 0,
-        user: id,
+        user: [{
+            userid: id,
+            name: username
+        }],
         published: date,
         status: "",
-        boughtBy: "",
+        user: [{
+            userid: "",
+            name: ""
+        }],
         subtitle: "",
         description: "",
         images: [{

@@ -18,8 +18,8 @@ export default function myItemsPage({items}){
              <div className={styles.boxen}>
                 {
                     items && items.map(item => {
-                        if(item.user == session.id && item.status != "sold"){
-                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
+                        if(item.user[0].userid == session.id && item.status != "sold"){
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user} image = {item.images[0].path}/>
                         }
                     })
                 }
@@ -29,8 +29,8 @@ export default function myItemsPage({items}){
             <div className={styles.boxen}>
                 {
                     items && items.map(item => {
-                        if(item.user == session.id && item.status == "sold"){
-                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
+                        if(item.user[0].userid == session.id && item.status == "sold"){
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user} image = {item.images[0].path}/>
                         }
                     })
                 }
@@ -40,8 +40,8 @@ export default function myItemsPage({items}){
             <div className={styles.boxen}>
                 {
                     items && items.map(item => {
-                        if(item.boughtBy == session.id && item.status == "sold"){
-                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user}/>
+                        if(item.boughtBy[0].userid == session.id && item.status == "sold"){
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} user = {item.user} image = {item.images[0].path}/>
                         }
                     })
                 }

@@ -12,7 +12,7 @@ export default function indexPage({items}){
                 {
                     items && items.map(item => {
                         if(item.status != "sold"){
-                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id}/>
+                            return <BoxHome title = {item.title} price = {item.price} id = {item.id} key = {item.id} image = {item.images[0].path}/>
                         }
                     })
                 }
