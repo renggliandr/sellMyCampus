@@ -187,12 +187,13 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         return [newFiles, tempItem]
     }
 
-    const blopUpload = async (images) => {
+    const blopUpload = (images) => {
         console.log(sasKey)
         const container = "picssellmycampus"
         for (let i = 0; i < images.length; i++) {
             const image = images[i]
             const login = `${url}/${container}/${image.name}?${sasKey}`;
+            console.log(login)
             let blockBlobClient = new BlockBlobClient(login, new AnonymousCredential());
             blockBlobClient.uploadBrowserData(image);
         }
