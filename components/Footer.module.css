@@ -1,11 +1,10 @@
 .footer {
-    padding: 0.5em;
+    position: relative;
+    bottom: 0;
+    padding: 10px;
     height: 50px;
     background-color: #FFCC00;
-    border-top: double black 0.25em;
-    clear: both;
-    position: relative;
-    margin-top: -50px;
+    border-top: double black 3px;
 }
 
 
@@ -14,7 +13,6 @@
 }
 
 .text {
-    
     display: inline;
 }
 
