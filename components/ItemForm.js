@@ -32,8 +32,6 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         username = session.username
     }
 
-    console.log(id)
-    console.log(username)
 
     let today = new Date(), 
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
@@ -59,7 +57,6 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         }]
     }
 
-    console.log(defaultItem)
     
     const [titleError, setTitleError] = useState(true);
     const [imgError, setImgError] = useState(true)
@@ -126,7 +123,6 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         if (!titleError && !imgError) {
             const resp = updateFileNames()
             blopUpload(resp[0])
-            console.log(item)
             try{
                 await ItemAPI.create(item)
             }catch (e){
@@ -193,12 +189,10 @@ export default function ItemForm({url, sasKey, highestId, items }) {
     }
 
     const blopUpload = (images) => {
-        console.log(sasKey)
         const container = "picssellmycampus"
         for (let i = 0; i < images.length; i++) {
             const image = images[i]
             const login = `${url}/${container}/${image.name}?${sasKey}`;
-            console.log(login)
             let blockBlobClient = new BlockBlobClient(login, new AnonymousCredential());
             blockBlobClient.uploadBrowserData(image);
         }

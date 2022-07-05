@@ -12,7 +12,6 @@ export default function detailItemPage(item, users) {
     const { session } = useGlobalContext()
 
     const handleDelete = async () => {
-        console.log(item.item)
         try {
             await ItemAPI.delete(item.item)
         } catch (e) {

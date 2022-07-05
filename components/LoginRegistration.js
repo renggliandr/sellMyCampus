@@ -52,7 +52,6 @@ export default function LoginRegistration({ type, users, highestId }) {
             if (session) {
                 logout()
             }
-            console.log(id)
             const user = {
                 "username": username,
                 "id": id

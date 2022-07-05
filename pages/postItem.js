@@ -4,7 +4,6 @@ import CredentialsAPI from "../lib/api/Credentials"
 import ItemAPI from "../lib/api/Items"
 
 export default function postItemPage({url, sasKey, highestId, items}){
-    console.log(highestId)
 
     return(
         <div>
