@@ -40,7 +40,6 @@ export default function ItemForm({url, sasKey, highestId, items }) {
 
 
     const defaultItem = {
-        id: idNew,
         title: "",
         price: 0,
         user: [{
@@ -254,7 +253,7 @@ export default function ItemForm({url, sasKey, highestId, items }) {
                 </form>
             </div> :
             <div>
-                <h2>Event wurde erfolgreich erstellt</h2>
+                <h2>Artikel wurde erfolgreich erstellt</h2>
             </div>
         }
     </div> : <p>Für diesen Bereich müssen Sie eingeloggt sein. <a href="/login">Hier</a> geht es zum Login.</p>}
