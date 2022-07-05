@@ -4,6 +4,9 @@
     background-color: #FFCC00;
     margin-bottom: 1.5em;
     border-bottom: double black 0.25em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .header {
