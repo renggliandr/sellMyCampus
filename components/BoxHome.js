@@ -1,7 +1,6 @@
 import styles from "./BoxHome.module.css"
 
 export default function BoxHome(props){
-    console.log(props.images)
 
     return(
         <div className={styles.box}>
