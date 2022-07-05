@@ -85,7 +85,6 @@ export default function LoginRegistration({ type, users, highestId }) {
         const user = {
             "username": username,
             "password": password,
-            "id": idNew,
             "published": date
         }
         
