@@ -2,13 +2,18 @@
     background-color: rgb(235, 235, 235);
     padding: 1.5em;
     margin: 1em;
-    min-width: 10em;
+    min-width: 12em;
     box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,0.3);
 }
 
 .image{
-    max-width: 10em;
+    width: 100%;
+    object-fit: contain;
     max-height: 10em;
+}
+
+.imageSpace {
+    height: 10.5em;
 }
 
 .btnDetail{
@@ -22,4 +27,22 @@
 .btnDetail a{
     color: white;
     text-decoration: none;
+}
+
+.darkBackgroundUp{
+    margin: -1.5em -1.5em 1.5em -1.5em;
+    padding: 1.5em 1.5em 0.5em 1.5em;
+    background-color: grey;
+}
+
+
+.darkLine{
+    margin: 1em -1.5em;
+    background-color: grey;
+    height: 0.5em;
+}
+
+.title {
+    color: rgb(235, 235, 235);
+    font-size: 1.2em;
 }

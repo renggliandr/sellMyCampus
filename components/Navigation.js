@@ -22,7 +22,7 @@ export default function Navigation () {
         <div className={styles.navigation}>
         <Link href="/">Home</Link>
         {session && <Link href="/myItems">Meine Artikel</Link>}
-        {session && <Link href="/postItem">Post Item</Link>}
+        {session && <Link href="/postItem">Artikel erfassen</Link>}
         {!session && <Link href="/login">Login</Link>}
         {session && <Link href="/"><a onClick={logout_clicked}>Logout</a></Link> }
         </div>
