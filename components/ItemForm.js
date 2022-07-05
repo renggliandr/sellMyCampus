@@ -32,6 +32,9 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         username = session.username
     }
 
+    console.log(id)
+    console.log(username)
+
     let today = new Date(), 
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
 
