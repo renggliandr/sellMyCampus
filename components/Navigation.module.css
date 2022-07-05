@@ -1,7 +1,7 @@
 .navigation {
     float: right;
     display: flex;
-
+    flex-wrap: wrap;
     height: 4em;
     align-items: center;
     margin-right: 2em;
@@ -13,7 +13,6 @@
         margin: 0 1em;
         text-decoration: none;
         color: black;
-    
 }
 
 .navigation a:hover {
