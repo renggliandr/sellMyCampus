@@ -15,13 +15,13 @@ export default function LoginRegistration({ type, users, highestId }) {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [registered, setRegistered] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (validateUser()) {
             setIsLoading(true)
             if (type === "login") {
@@ -57,7 +57,6 @@ export default function LoginRegistration({ type, users, highestId }) {
             console.log(id)
             const user = {
                 "username": username,
-                "password": password,
                 "id": id
             }
             login(user)
@@ -90,6 +89,7 @@ export default function LoginRegistration({ type, users, highestId }) {
         
         let newUser = null
         try {
+            setRegistered(true)
             newUser = await UsersAPI.signUp(user)
            
         } catch (a) {
@@ -106,31 +106,52 @@ export default function LoginRegistration({ type, users, highestId }) {
         if (!regexOnlyWhiteSpace.test(username) || password === "" || !regexOnlyWhiteSpace.test(password)) {
             setError("Bitte geben sie einen gültigen Username und Passwort ein!")
             return false
-        } else {
-            setError(null)
-            return true
+        } 
+        if (type === "sign-up") {
+            if(password != passwordConfirmation){
+                setError("Passwort stimmt nicht überein")
+                return false
+            }
         }
+
+        setError(null)
+        return true
+        
     }
 
     return (
         !registered ?
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <div>
-                    <input onChange={(e) => setUsername(e.target.value)} type="text"
-                        name="username" placeholder="Username" />
-                </div>
-
-                <div>
-                    <input onChange = {(e) => setPassword(e.target.value)} type="password"
-                        name="password" placeholder="Password" />
-                </div>
-                <Button disabled={isLoading} type={"submit"} text={type === "login" ? "Login" : "Create User"}>
-                    {isLoading ? "...Loading" : "Login"}
-                </Button>
-                {error && <div className={styles.error}>{error}</div>}
+            <div>
                 {type === "login" &&
-                    <Link href={"/sign-up"}><a className={styles.link}>Benutzer erstellen</a></Link>}
-            </form> :
+                    <h1>Login</h1>}
+                {type === "sign-up" &&
+                <h1>Neuen User Erstellen</h1>}
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles.input}>
+                        <input onChange={(e) => setUsername(e.target.value)} type="text"
+                            name="username" placeholder="Username" />
+                    </div>
+
+                    <div className={styles.input}>
+                        <input onChange = {(e) => setPassword(e.target.value)} type="password"
+                            name="password" placeholder="Password" />
+                    </div>
+                    {type === "sign-up" &&
+                    <div className={styles.input}>
+                        <input onChange = {(e) => setPasswordConfirmation(e.target.value)} type="password"
+                            name="passwordConfirmation" placeholder="Password Confirmation" />
+                    </div>}
+                    <Button disabled={isLoading} type={"submit"} text={type === "login" ? "Login" : "Create User"}>
+                        {isLoading ? "...Loading" : "Login"}
+                    </Button>
+                    {error && <div className={styles.error}>{error}</div>}
+                    {type === "login" &&
+                        <p>Sind Sie neu hier? <Link href={"/sign-up"}><a className={styles.linkLogin}>Hier können Sie einen neuen Account erstellen!</a></Link></p>}
+                    {type === "sign-up" &&
+                    <p>Haben Sie bereits ein Account? <Link href={"/login"}><a className={styles.linkLogin}>Hier geht es zum Login!</a></Link></p>}
+                </form>
+            </div>
+                 :
             <div className={styles.registered}>
                 <h1>User wurde erfolgreich erstellt</h1>
             </div>

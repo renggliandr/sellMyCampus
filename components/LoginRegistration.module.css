@@ -1,0 +1,17 @@
+.input {
+    margin-bottom: 1em;
+}
+
+.createUser {
+    background-color: #FFCC00;
+    padding: 0.5em;
+    border: none;
+    border-radius: 10%;
+    margin-right: 5em;
+    color: black;
+    cursor: pointer; 
+}
+
+.linkLogin {
+    cursor: pointer;
+}
