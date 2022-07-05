@@ -38,10 +38,8 @@ export default function LoginRegistration({ type, users, highestId }) {
         
         let response = null
         let id = 0
-        console.log(users)
 
         for(let i = 0; i < users.users.length; i++){
-            console.log(users.users[i])
             if(users.users[i].username == username){
                 if(users.users[i].password == password){
                     response = "Treffer"
