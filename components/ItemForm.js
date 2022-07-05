@@ -49,7 +49,7 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         }],
         published: date,
         status: "",
-        user: [{
+        boughtBy: [{
             userid: "",
             name: ""
         }],
@@ -59,6 +59,8 @@ export default function ItemForm({url, sasKey, highestId, items }) {
             path: ""
         }]
     }
+
+    console.log(defaultItem)
     
     const [titleError, setTitleError] = useState(true);
     const [imgError, setImgError] = useState(true)
@@ -125,6 +127,7 @@ export default function ItemForm({url, sasKey, highestId, items }) {
         if (!titleError && !imgError) {
             const resp = updateFileNames()
             blopUpload(resp[0])
+            console.log(item)
             try{
                 await ItemAPI.create(item)
             }catch (e){
