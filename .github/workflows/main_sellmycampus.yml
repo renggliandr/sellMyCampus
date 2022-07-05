@@ -3,17 +3,11 @@
 
 name: Build and deploy Node.js app to Azure Web App - sellmycampus
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      CI: false
 
     steps:
       - uses: actions/checkout@main
@@ -21,7 +15,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '16.13.1'
+          node-version: '16.14.0'
 
       - name: npm install, build, and test
         run: |
