@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build" : "next build",
+    "build": "next build",
     "start": "next start -p $PORT"
   },
   "repository": {
@@ -24,7 +24,8 @@
     "jwt-decode": "^3.1.2",
     "next": "^12.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-responsive-carousel": "^3.2.23"
   },
   "devDependencies": {
     "webpack": "^5.73.0",

@@ -1,7 +1,14 @@
-.image{
-    max-width: 20em;
-    max-height: 20em;
-    margin: 2em 0 2em 0;
+.carousel {
+    background-color: rgb(223, 219, 219);
+    margin-top: 1em;
+    max-height: 20vh;
+    width: 20vw;
+}
+
+.carousel img {
+    object-fit: contain;
+    width: 100%;
+    max-height: 20vh;
 }
 
 .btnBuy{
@@ -13,7 +20,7 @@
 }
 
 .btnDelete{
-    background-color: red;
+    background-color: darkred;
     padding: 0.5em;
     border: none;
     margin-top: 2em;
@@ -39,4 +46,8 @@
     color: darkgreen;
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.untertitel{
+    margin-top: 2em;
 }

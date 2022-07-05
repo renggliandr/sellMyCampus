@@ -171,7 +171,7 @@ export default function ItemForm({url, sasKey, highestId, items }) {
 
         if (files.length !== 0) {
             for (let i = 0; i < files.length; i++) {
-                const name = `${item.title}_${item.price}_${i}.${files[i].name.split(".")[files[i].name.split(".").length-1]}`
+                const name = `${date}_${session.username}_${i}.${files[i].name.split(".")[files[i].name.split(".").length-1]}`
                 jsonArr.push({
                     path: name
                 })
