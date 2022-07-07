@@ -52,7 +52,7 @@ export default function detailItemPage(item, users) {
             {session && item.item.user[0].userid == session.id ? <p><strong>Anbieter:</strong> you</p> : <p><strong>Anbieter:</strong> {item.item.user[0].name}</p>}
             <p><strong>Veröffentlicht:</strong> {item.item.published}</p>
             {item.item.status == "sold" && <p><span className={styles.sold}>SOLD</span> Käufer: {item.item.boughtBy[0].name}</p>}
-            <button className={styles.btnBack}><a href={`/`}>Zurück</a></button>
+            <button className={styles.btnBack}><a href={`/`}>Zurück zur Startseite</a></button>
             {session && (item.item.user[0].userid == session.id) && (item.item.status != "sold") && <button className={styles.btnDelete} onClick={handleDelete}><a>Löschen</a></button>}
             {session && (item.item.user[0].userid != session.id) && (item.item.status != "sold") && <button className={styles.btnBuy} onClick={handleBuy}><a href={`/`}>Kaufen</a></button>}
 

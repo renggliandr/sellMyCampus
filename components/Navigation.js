@@ -23,6 +23,7 @@ export default function Navigation () {
         <Link href="/">Home</Link>
         {session && <Link href="/myItems">Meine Artikel</Link>}
         {session && <Link href="/postItem">Artikel erfassen</Link>}
+        {session && <Link href="/items">Alle Artikel</Link>}
         {!session && <Link href="/login">Login</Link>}
         {session && <Link href="/"><a onClick={logout_clicked}>Logout</a></Link> }
         </div>
